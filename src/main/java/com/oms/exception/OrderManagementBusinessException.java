@@ -1,11 +1,11 @@
-package  com.oms.exception;
+package com.oms.exception;
 
 public class OrderManagementBusinessException extends RuntimeException {
 
 	private static final long serialVersionUID = -145942914795505609L;
 
 	public OrderManagementBusinessException() {
-		super();
+		this("Internal Server Error for OrderItem Service, contact support team");
 	}
 
 	public OrderManagementBusinessException(String message, Throwable cause) {

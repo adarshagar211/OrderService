@@ -15,23 +15,24 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.oms.exception.OrderManagementBusinessException;
 import com.oms.exception.OrderNotFoundException;
+import com.oms.model.ErrorMessage;
 
 @ControllerAdvice
 public class OrderManagementSystemControllerAdvice extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(value = { OrderNotFoundException.class })
 	protected ResponseEntity<Object> handleOrderConflict(OrderNotFoundException ex) {
-		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Object>(new ErrorMessage(HttpStatus.NOT_FOUND.value(), ex.getMessage()), HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(value = { OrderManagementBusinessException.class })
 	protected ResponseEntity<Object> handleOrderConflict(OrderManagementBusinessException ex) {
-		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<Object>(new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(value = { Exception.class })
 	protected ResponseEntity<Object> handleExceptionConflict(Exception ex) {
-		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<Object>(new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@Override
