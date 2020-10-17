@@ -1,4 +1,4 @@
-package  com.oms.exception;
+package  com.fda.exception;
 
 public class OrderNotFoundException extends RuntimeException {
 

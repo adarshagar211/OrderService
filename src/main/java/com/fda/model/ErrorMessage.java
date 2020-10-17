@@ -1,4 +1,4 @@
-package com.oms.model;
+package com.fda.model;
 
 public class ErrorMessage {
 
